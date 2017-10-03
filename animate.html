@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<div id="d" style="width:100px; height:100px; background:lime; position:relative;"></div>
+<script>
+var d = document.getElementById("d");
+var start = window.mozAnimationStartTime;
+function step(event) {
+  var progress = event.timeStamp - start;
+  d.style.left = Math.min(progress/10, 200) + "px";
+  if (progress < 2000) {
+    window.mozRequestAnimationFrame();
+  } else {
+    window.removeEventListener("MozBeforePaint", step, false);
+  }
+}
+window.addEventListener("MozBeforePaint", step, false);
+window.mozRequestAnimationFrame();
+</script>
+</body>
+</html>

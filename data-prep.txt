@@ -1,0 +1,14 @@
+Remove non-printable chars from file:
+tr -cd '\11\12\15\40-\176' 
+
+remove leading <coordinates> tag
+sed  s/\<coordinates\>//  coords.txt > tmp
+
+remove trailing </coordinates> end tag
+
+sed  s/\<\\/coordinates\>//g  tmp > tmp2
+
+add a comma after each line
+sed  's/$/,/' tmp2 > data.js
+
+awk -F'<br />' '{ print $4 $5 $8}' tmp|wc -l

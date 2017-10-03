@@ -1,0 +1,75 @@
+ 1018  man sed
+ 1019  sed s/coordinate/test coords.txt 
+ 1020  sed -e s/coordinate/test coords.txt 
+ 1021  sed -e 's/coordinate/test' coords.txt 
+ 1022  man sed
+ 1023  sed {s/coordinate/test} coords.txt 
+ 1024  sed -e {s/coordinate/test} coords.txt 
+ 1025  man sed
+ 1026  sed { s/coordinate/test } coords.txt 
+ 1027  sed  s/coordinate/test  coords.txt 
+ 1028  sed  s/coordinate/test/  coords.txt 
+ 1029  sed  s/coordinate/test/g  coords.txt 
+ 1030  sed  s/coordinate//g  coords.txt 
+ 1031  sed  s/coordinates//g  coords.txt 
+ 1032  sed  s/<coordinates>//  coords.txt 
+ 1033  sed  s/\<coordinates\>//  coords.txt 
+ 1034  sed  s/\<coordinates\>//  coords.txt |sed s/\<\/coordinates\>/
+ 1035  sed  s/\<coordinates\>//  coords.txt |sed s/\<\/coordinates\>//
+ 1036  sed  s/\<coordinates\>//  coords.txt |sed s/\<\/coordinates\>/
+ 1037  sed  s/\<coordinates\>//  coords.txt 
+ 1038  sed  s/\<coordinates\>//  coords.txt |sed s/\<\/coordinates\>/test/
+ 1039  sed  s/\<coordinates\>//  coords.txt |sed s/"</coordinates>"/test/
+ 1040  sed  s/\<coordinates\>//  coords.txt |sed s/"</coordinates>"/test//
+ 1041  sed  s/\<coordinates\>//  coords.txt 
+ 1042  sed  s/\<coordinates\>//  coords.txt > tmp
+ 1044  sed  s/\<coordinates\>//  tmp
+ 1045  sed  s/\<\/coordinates\>//  tmp
+ 1046  sed  s/\<*//  tmp
+ 1047  sed  s/\<*/test/  tmp
+ 1048  sed  s/\<*//  tmp
+ 1049  sed  s/\<*//g  tmp
+ 1050  sed  s/\<*coor*\>//g  tmp
+ 1051  sed  s/<coordinates>//g  tmp
+ 1052  sed  s/\<coordinates>//g  tmp
+ 1053  sed  s/\<coordinates\>//g  tmp
+ 1054  sed  s/\<\/coordinates\>//g  tmp
+ 1055  sed  's/\<\/coordinates\>//g'  tmp
+ 1056  sed  's/\</coordinates\>//g'  tmp
+ 1057  sed  's/\<\/coordinates\>//g'  tmp
+ 1058  sed  s/\<\/coordinates\>//g  tmp
+ 1059  sed  s/\<//coordinates\>//g  tmp
+ 1060  sed  s/\<\\/coordinates\>//g  tmp
+ 1061  sed  s/\<\\/coordinates\>//g  tmp > tmp2
+ 1063  sed  a , tmp2
+ 1064  sed  a \, tmp2
+ 1065  man sed
+ 1066  sed  a \ , tmp2
+ 1067  sed  a \ ',' tmp2
+ 1068  sed  A \ ',' tmp2
+ 1069  sed  $ a \ ',' tmp2
+ 1070  sed  $ a \ , tmp2
+ 1071  sed  $ a\ , tmp2
+ 1072  sed  '$ a\ ,' tmp2
+ 1073  sed  '/$ a\ ,' tmp2
+ 1074  sed  'a\ ,' tmp2
+ 1075  sed  'a\,' tmp2
+ 1076  sed  '$a\,' tmp2
+ 1077  sed  '^$a\,' tmp2
+ 1078  sed  '/^$a\,' tmp2
+ 1079  sed  '^$a\,' tmp2
+ 1080  sed  '/^$a\,' tmp2
+ 1081  sed  '$a\,' tmp2
+ 1082  sed  '/^$a\,' tmp2
+ 1083  sed  'a\,' tmp2
+ 1084  sed  'a,' tmp2
+ 1085  sed  a, tmp2
+ 1086  sed  $ a, tmp2
+ 1087  sed  /$ a, tmp2
+ 1088  sed  's/$/, tmp2
+ 1089  sed  's/$/,' tmp2
+ 1090  sed  's/$/,/' tmp2
+ 1091  sed  's/$/,/' tmp2|less
+ 1092  sed  's/$/,/' tmp2 > data.js
+ 1099  history|grep sed
+ 1100  history|grep sed > sed-cmds.txt

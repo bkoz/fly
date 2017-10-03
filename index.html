@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+    <script type="text/javascript" src ="http://maps.googleapis.com/maps/api/js?key=AIzaSyDvz9A0XB56r4uegYtWWCxkWsR0etcndls&sensor=false"> 
+    </script> 
+
+    <script type="text/javascript"> 
+
+      var globalCoordIndex = 0;
+      var globalTimer;
+      var marker;
+      var map;
+      var symbol;
+      getScript('data.js', function() {});
+
+      function initialize () {
+
+      var myLatLong1 = new google.maps.LatLng (30.317798, -97.916593);
+
+      var myOptions = {
+      center:myLatLong1,
+      zoom:12,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+      };
+      
+      map =
+      new google.maps.Map (document.getElementById ("map_canvas"), myOptions);
+
+      symbol = new Array();
+      for(i=0;i<360;i++) {
+			 symbol[i] = {
+			 path : google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+			 scale: 3,
+			 rotation: i+1
+			 };
+			 }
+
+			 marker = new google.maps.Marker ({
+			 position: myLatLong1, map: map, title:'Fly', icon: symbol[0] }
+			 );
+
+        globalTimer = setInterval(function(){ updateMarker() }, 500);
+			}
+
+			function updateMarker () {
+           // Each row has 4 coords.
+           var i = globalCoordIndex * 4;
+					 var p1 = new google.maps.LatLng (coords[i], -coords[i+1]);
+           var oldZoom;
+           var newZoom = getZoom(coords[i+3]);
+					 console.log("globalCoordIndex = " + globalCoordIndex);
+					 map.setCenter(p1);
+           
+           if(oldZoom != newZoom) {
+           map.setZoom(newZoom);
+           oldZoom = newZoom;
+           }
+
+					 marker.setPosition (p1);
+					 marker.setIcon(symbol[coords[i+2]]);
+					 delete p1;
+           // row counter (2682 total rows)
+           globalCoordIndex = globalCoordIndex + 1;
+           if (globalCoordIndex > 2681) {
+             window.clearInterval(globalTimer);
+           }
+
+					 var delay = 1000;
+					 // globalTimer = window.setTimeout(function(){updateMarker()}, delay);
+					 }
+
+					 function getScript(url, callback) {
+					 var script = document.createElement('script');
+					 script.type = 'text/javascript';
+					 script.src = url;
+
+					 script.onreadystatechange = callback;
+					 script.onload = callback;
+
+					 document.getElementsByTagName('head')[0].appendChild(script);
+					 }
+
+           function getZoom(altitude) {
+           var min = 426;
+           var max = 22358;
+           var zoomMax = 14.0;
+           var zoomMin = 9.0;
+           var zoomRange = zoomMax - zoomMin;
+           var zoom = (altitude-min)/(max-min);
+           return Math.floor(zoomMax - (zoom * zoomRange)); 
+					 }
+
+					 </script>
+  </head>
+  <body onload = "initialize()">
+    <div id = "map_canvas" style = "width:100%; height:100%"></div>
+  </body> 
+</html>
